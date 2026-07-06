@@ -17,38 +17,43 @@
   .container {
     position: relative; z-index: 2; text-align: center; 
     background: rgba(255,255,255,0.95); padding: 40px; border-radius: 30px;
-    box-shadow: 0 15px 50px rgba(214,51,132,0.3); max-width: 550px;
+    box-shadow: 0 15px 50px rgba(214,51,132,0.3); max-width: 550px; animation: fadeIn 1s;
   }
+  @keyframes fadeIn { from{opacity:0; transform:scale(0.8)} to{opacity:1; transform:scale(1)} }
   h1 { color: #d63384; font-size: 2.5em; margin-bottom: 10px; font-family: 'Dancing Script', cursive; }
-  .sub { color: #a63a6a; font-size: 1.2em; margin-bottom: 25px; }
   .btn {
     padding: 15px 40px; font-size: 1.3em; border: none; border-radius: 50px;
     cursor: pointer; margin: 10px; font-weight: bold; transition: 0.3s;
   }
   #si { background: #ff5e94; color: white; }
-  #si:hover { transform: scale(1.1); }
-  #no { background: white; color: #ff5e94; position: absolute; border: 2px solid #ff5e94; }
+  #si:hover { transform: scale(1.1) rotate(-2deg); box-shadow: 0 10px 30px rgba(255,94,148,0.5); }
+  #no { background: white; color: #ff5e94; position: absolute; border: 2px solid #ff5e94; transition: all 0.2s; }
   
   #btnMusica {
     position: fixed; top: 20px; right: 20px; z-index: 999;
     background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
-    width: 50px; height: 50px; font-size: 1.5em; cursor: pointer;
+    width: 50px; height: 50px; font-size: 1.5em; cursor: pointer; animation: pulse 2s infinite;
   }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
   
   .piropos { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0; }
   .piropo {
     background: linear-gradient(45deg, #ff5e94, #ff9ec9); color: white; 
     padding: 10px 18px; border-radius: 25px; font-weight: 600; animation: pop 0.5s;
   }
-  @keyframes pop { from{transform:scale(0)} to{transform:scale(1)} }
+  @keyframes pop { 0%{transform:scale(0) rotate(-180deg)} 100%{transform:scale(1) rotate(0)} }
   
   #carta {
-    font-family: 'Dancing Script', cursive; font-size: 1.4em; color: #d63384;
+    font-family: 'Dancing Script', cursive; font-size: 1.5em; color: #d63384;
     text-align: left; margin-top: 20px; min-height: 120px; line-height: 1.6;
   }
   .cursor { animation: blink 1s infinite; }
   @keyframes blink { 50%{opacity:0} }
   .hidden { display: none; }
+  
+  /* CONFETTI */
+  .confetti { position: fixed; width: 10px; height: 10px; background: #ff5e94; position: absolute; animation: fall 3s linear infinite; }
+  @keyframes fall { to{transform: translateY(100vh) rotate(360deg)} }
 </style>
 </head>
 <body>
@@ -62,7 +67,7 @@
 
 <div class="container" id="pantalla1">
   <h1>Lucero Paucar 🥺</h1>
-  <p class="sub">Tengo algo muy importante que decirte...</p>
+  <p style="color:#a63a6a;">Tengo algo muy importante que decirte...</p>
   <h1>¿Quieres ser mi novia?</h1>
   <button class="btn" id="si" onclick="aceptar()">SÍ ❤️</button>
   <button class="btn" id="no">NO</button>
@@ -72,71 +77,90 @@
   <h1>¡Sabía que dirías SÍ! 😍💖</h1>
   <p style="font-size:1.2em; color:#a63a6a;">Porque tú eres:</p>
   <div class="piropos" id="piropos"></div>
-  
   <div id="carta"></div>
-  
-  <p style="margin-top:20px; color:#d63384; font-weight:bold;">Gracias por iluminar mi vida como tu nombre ✨</p>
 </div>
 
 <script>
-// CORAZONES
+// 1. CORAZONES + PARTICULAS
 const canvas = document.getElementById('hearts'); const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth; canvas.height = window.innerHeight;
 let hearts = [];
-function Heart(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height-50; this.size=Math.random()*15+10; this.speed=Math.random()*2+1; }
-Heart.prototype.draw=function(){ ctx.fillStyle='rgba(255,105,180,0.6)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
-function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); if(hearts.length<40) hearts.push(new Heart()); hearts.forEach((h,i)=>{ h.y+=h.speed; h.draw(); if(h.y>canvas.height) hearts.splice(i,1); }); requestAnimationFrame(animate); }
+function Heart(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height-50; this.size=Math.random()*15+10; this.speed=Math.random()*2+1; this.opacity=0.6; }
+Heart.prototype.draw=function(){ ctx.fillStyle=`rgba(255,105,180,${this.opacity})`; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); if(hearts.length<50) hearts.push(new Heart()); hearts.forEach((h,i)=>{ h.y+=h.speed; h.opacity-=0.002; h.draw(); if(h.y>canvas.height || h.opacity<=0) hearts.splice(i,1); }); requestAnimationFrame(animate); }
 animate();
 
-// MUSICA
+// 2. MUSICA
 const musica = document.getElementById('musica'); let reproduciendo = false;
 function toggleMusica(){ if(reproduciendo){ musica.pause(); btnMusica.innerHTML='▶️'; } else { musica.play(); btnMusica.innerHTML='⏸️'; } reproduciendo = !reproduciendo; }
 
-// BOTON NO CON FRASES CHISTOSAS
-const frasesNo = ['NO', '¿Segura? 🥺', 'Piénsalo bien', 'Dale otra oportunidad', 'Porfaaa', 'Última oportunidad', '¿En serio NO?', 'Me vas a romper el corazón'];
+// 3. BOTON NO INFINITO CON 20 FRASES
+const frasesNo = [
+  'NO', '¿Segura? 🥺', 'Piénsalo bien', 'Dale otra oportunidad', 'Porfaaa', 
+  'Última oportunidad', '¿En serio NO?', 'Me vas a romper el corazón', 'Inténtalo',
+  'Solo di SÍ', 'Te espero', 'No seas mala', 'Por Lucerito', '¿Y si SÍ?',
+  'Te lo ruego', 'Una más', 'Ya pues', 'Te amo', 'Dale click al SÍ', 'Rendición 😭'
+];
 let contadorNo = 0;
 const btnNo = document.getElementById('no');
 btnNo.addEventListener('mouseover', ()=>{ 
-  btnNo.style.left = Math.random()*(window.innerWidth-150)+'px';
-  btnNo.style.top = Math.random()*(window.innerHeight-150)+'px';
-  btnNo.innerText = frasesNo[contadorNo % frasesNo.length];
+  const maxX = window.innerWidth - btnNo.offsetWidth - 20;
+  const maxY = window.innerHeight - btnNo.offsetHeight - 20;
+  btnNo.style.left = Math.random()*maxX + 'px';
+  btnNo.style.top = Math.random()*maxY + 'px';
+  btnNo.innerText = frasesNo[contadorNo % frasesNo.length]; // INFINITO
   contadorNo++;
+  btnNo.style.transform = `rotate(${Math.random()*20-10}deg)`; // tiembla
 });
 
-// EFECTO MAQUINA DE ESCRIBIR
+// 4. CONFETTI AL ACEPTAR
+function lanzarConfetti(){
+  for(let i=0; i<100; i++){
+    setTimeout(()=>{
+      let c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random()*100+'vw';
+      c.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+      c.style.animationDuration = Math.random()*2+2+'s';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 3000);
+    }, i*20);
+  }
+}
+
+// 5. MAQUINA DE ESCRIBIR
 function escribirCarta(texto, elemento){
   let i = 0;
   function type(){
     if(i < texto.length){
       elemento.innerHTML = texto.substring(0, i+1) + '<span class="cursor">|</span>';
-      i++; setTimeout(type, 60);
-    } else {
-      elemento.innerHTML = texto; // quita el cursor al final
-    }
+      i++; setTimeout(type, 50);
+    } else { elemento.innerHTML = texto; }
   }
   type();
 }
 
-// ACEPTAR
+// 6. ACEPTAR
 function aceptar(){
   document.getElementById('pantalla1').classList.add('hidden');
   document.getElementById('pantalla2').classList.remove('hidden');
   musica.play(); btnMusica.innerHTML='⏸️'; reproduciendo=true;
+  lanzarConfetti(); // EFECTO NUEVO
   
-  const piropos = ['Hermosa','Bonita','Preciosa','Chiquita','Flaquita','Lucero','Única','Especial','Dulce','Mi favorita','Mi universo'];
+  const piropos = ['Hermosa','Bonita','Preciosa','Chiquita','Flaquita','Lucero','Única','Especial','Dulce','Mi favorita','Mi universo','Mi todo'];
   const cont = document.getElementById('piropos');
   piropos.forEach((p,i)=> setTimeout(()=>{ 
     let span=document.createElement('span'); span.className='piropo'; span.textContent=p; cont.appendChild(span);
-  }, i*200));
+  }, i*150));
   
-  // CARTA PERSONALIZADA
   setTimeout(()=>{
     const textoCarta = `Lucero Paucar...
 Desde que supe tu nombre supe que iluminarías mi vida.
 Eres chiquita, bonita y flaquita, pero con un corazón gigante.
-¿Me das la oportunidad de cuidarte y hacerte feliz todos los días? 💕`;
+Prometo cuidarte, hacerte reír y quererte todos los días.
+¿Me das la oportunidad de ser tu novio? 💕`;
     escribirCarta(textoCarta, document.getElementById('carta'));
-  }, 1500);
+  }, 1200);
 }
 </script>
 </body>
