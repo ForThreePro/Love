@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Lucero 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: linear-gradient(135deg, #ff9ec9 0%, #ffd6e8 100%);
+    font-family: 'Poppins', sans-serif; overflow: hidden; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  canvas { position: fixed; top:0; left:0; z-index: 0; }
+  
+  .container {
+    position: relative; z-index: 2; text-align: center; 
+    background: rgba(255,255,255,0.92); padding: 40px; border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(214,51,132,0.3); max-width: 500px;
+  }
+  h1 { color: #d63384; font-size: 2.5em; margin-bottom: 10px; }
+  .sub { color: #a63a6a; font-size: 1.2em; margin-bottom: 25px; }
+  .btn {
+    padding: 15px 40px; font-size: 1.3em; border: none; border-radius: 50px;
+    cursor: pointer; margin: 10px; font-weight: bold; transition: 0.3s;
+  }
+  #si { background: #ff5e94; color: white; }
+  #si:hover { transform: scale(1.1); }
+  #no { background: white; color: #ff5e94; position: absolute; }
+  
+  #btnMusica {
+    position: fixed; top: 20px; right: 20px; z-index: 999;
+    background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
+    width: 50px; height: 50px; font-size: 1.5em; cursor: pointer;
+  }
+  
+  .piropos { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+  .piropo {
+    background: linear-gradient(45deg, #ff5e94, #ff9ec9); color: white; 
+    padding: 10px 18px; border-radius: 25px; font-weight: 600; animation: pop 0.5s;
+  }
+  @keyframes pop { from{transform:scale(0)} to{transform:scale(1)} }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
 
+<canvas id="hearts"></canvas>
+
+<!-- BOTON MUSICA -->
+<button id="btnMusica" onclick="toggleMusica()">▶️</button>
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="pantalla1">
+  <h1>Lucero Paucar 🥺</h1>
+  <p class="sub">Tengo algo que decirte...</p>
+  <h1>¿Quieres ser mi novia?</h1>
+  <button class="btn" id="si" onclick="aceptar()">SÍ ❤️</button>
+  <button class="btn" id="no">NO</button>
+</div>
+
+<div class="container hidden" id="pantalla2">
+  <h1>¡Sabía que dirías SÍ! 😍💖</h1>
+  <p style="font-size:1.2em; color:#a63a6a;">Porque tú eres:</p>
+  <div class="piropos" id="piropos"></div>
+  <p style="margin-top:20px; color:#d63384; font-weight:bold;">Gracias por iluminar mi vida como tu nombre ✨</p>
+</div>
+
+<script>
+// CORAZONES CAYENDO - del repo
+const canvas = document.getElementById('hearts');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+let hearts = [];
+function Heart() {
+  this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height-50;
+  this.size = Math.random()*15+10; this.speed = Math.random()*2+1;
+  this.color = `rgba(255,${Math.random()*100+100},${Math.random()*100+180},0.7)`;
+}
+Heart.prototype.draw = function() {
+  ctx.fillStyle = this.color; ctx.beginPath();
+  ctx.moveTo(this.x, this.y); ctx.bezierCurveTo(this.x, this.y-this.size/2, this.x-this.size, this.y+this.size/2, this.x, this.y+this.size);
+  ctx.bezierCurveTo(this.x, this.y+this.size/2, this.x+this.size, this.y-this.size/2, this.x, this.y); ctx.fill();
+}
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(hearts.length < 50) hearts.push(new Heart());
+  hearts.forEach((h,i)=>{ h.y+=h.speed; h.draw(); if(h.y>canvas.height) hearts.splice(i,1); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// MUSICA
+const musica = document.getElementById('musica'); let reproduciendo = false;
+function toggleMusica() {
+  if(reproduciendo){ musica.pause(); btnMusica.innerHTML='▶️'; } 
+  else { musica.play(); btnMusica.innerHTML='⏸️'; }
+  reproduciendo = !reproduciendo;
+}
+
+// BOTON NO QUE HUYE
+const btnNo = document.getElementById('no');
+btnNo.addEventListener('mouseover', ()=>{ 
+  btnNo.style.left = Math.random()*(window.innerWidth-100)+'px';
+  btnNo.style.top = Math.random()*(window.innerHeight-100)+'px';
+});
+
+// ACEPTAR
+function aceptar(){
+  document.getElementById('pantalla1').classList.add('hidden');
+  document.getElementById('pantalla2').classList.remove('hidden');
+  musica.play(); btnMusica.innerHTML='⏸️'; reproduciendo=true;
+  
+  const piropos = ['Hermosa','Bonita','Preciosa','Chiquita','Flaquita','Lucero','Única','Especial','Dulce','Mi favorita'];
+  const cont = document.getElementById('piropos');
+  piropos.forEach((p,i)=> setTimeout(()=>{ 
+    let span=document.createElement('span'); span.className='piropo'; span.textContent=p; cont.appendChild(span);
+  }, i*200));
+}
+</script>
+</body>
+</html>
