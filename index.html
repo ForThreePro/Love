@@ -1,117 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Lucero ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<style>
-    :root{--rosa:#ff4d8d;--fondo:#1a001a;--fondo-light:#fff0f5;--texto-light:#333;}
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{background:linear-gradient(135deg, #1a001a, #4d0033);color:#fff;font-family:'Poppins',sans-serif;text-align:center;overflow-x:hidden;transition:0.5s;padding-bottom:100px;}
-    body.light-mode{background:linear-gradient(135deg, #fff0f5, #ffe6f0);color:var(--texto-light);}
-    #corazones{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
-    .corazon-caer{position:absolute;color:var(--rosa);font-size:20px;animation:caer 5s linear infinite;opacity:0.7;}
-    @keyframes caer{0%{transform:translateY(-10vh) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);}}
-    .caja{background:rgba(255,255,255,0.05);backdrop-filter:blur(15px);border:1px solid rgba(255,77,141,0.3);border-radius:20px;padding:40px 30px;max-width:700px;width:90%;margin:40px auto;box-shadow:0 0 40px rgba(255,77,141,0.3);position:relative;z-index:2;}
-    body.light-mode .caja{background:rgba(255,255,255,0.7);border:1px solid rgba(255,77,141,0.2);}
-    h1{font-family:'Dancing Script';font-size:3em;color:var(--rosa);margin-bottom:10px;}
-    h2{font-family:'Dancing Script';color:var(--rosa);margin:30px 0 15px;font-size:2em;}
-    .contador{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}
-    .tiempo{background:rgba(255,77,141,0.15);border:1px solid var(--rosa);border-radius:12px;padding:20px 15px;min-width:90px;}
-    .tiempo .num{font-size:2.5em;font-weight:600;color:var(--rosa);}
-    .carta{text-align:left;background:rgba(0,0,0,0.2);padding:20px;border-radius:12px;line-height:1.8;font-size:1.1em;}
-    body.light-mode .carta{background:rgba(255,255,255,0.8);}
-    .frase{font-family:'Dancing Script';font-size:1.5em;color:var(--rosa);margin:20px 0;min-height:50px;}
-    .btn{background:var(--rosa);color:#fff;padding:12px 25px;border:none;border-radius:50px;font-weight:600;cursor:pointer;margin:10px;transition:0.3s;font-size:1em;}
-    .btn:hover{transform:scale(1.05);box-shadow:0 0 20px var(--rosa);}
-    #btnTema{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;z-index:999;}
-    #btnMusica{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:50%;z-index:999;}
-    iframe{border-radius:12px;margin-top:15px;}
-    @media(max-width:600px){.tiempo{min-width:70px;}.tiempo .num{font-size:2em;}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Lucero ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #e91e63;
+            border-bottom: 2px solid #fecfef;
+            padding-bottom: 10px;
+        }
+        .contador {
+            background: #ffeef8;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+        .contador span {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e91e63;
+        }
+        .playlist {
+            margin: 30px 0;
+            text-align: left;
+        }
+        .cancion {
+            margin-bottom: 25px;
+        }
+        .cancion h3 {
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .footer {
+            margin-top: 30px;
+            font-style: italic;
+            color: #777;
+        }
+        .corazon {
+            color: #e91e63;
+            animation: latido 1.5s infinite;
+        }
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Para Ti Lucero <span class="corazon">❤️</span></h1>
+        <p>Desde el 06/07/2026 a las 4:23pm</p>
 
-<div id="corazones"></div>
+        <!-- CONTADOR -->
+        <div class="contador">
+            <h2>Nuestro Tiempo Juntos</h2>
+            <p>Han pasado:</p>
+            <span id="dias">0</span> días 
+            <span id="horas">0</span> horas 
+            <span id="minutos">0</span> minutos 
+            <span id="segundos">0</span> segundos
+        </div>
 
-<button id="btnMusica" class="btn">▶️</button>
-<button id="btnTema" class="btn">🌙</button>
+        <!-- PLAYLIST -->
+        <div class="playlist">
+            <h2>La Noche Más Linda para Lucero <span class="corazon">❤️</span></h2>
+            <p>Las canciones que me recuerdan a ti</p>
 
-<audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-</audio>
+            <div class="cancion">
+                <h3>1. La noche más linda - Adalberto Santiago</h3>
+                <iframe style="border-radius:12px" src="https://www.youtube.com/embed/JZc6hQqZ6yY" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
 
-<div class="caja">
-    <h1>Para Lucero ❤️</h1>
-    <p>Juntos desde el 06/06/2026</p>
-    
-    <div class="contador">
-        <div class="tiempo"><div class="num" id="dias">00</div><div>Días</div></div>
-        <div class="tiempo"><div class="num" id="horas">00</div><div>Horas</div></div>
-        <div class="tiempo"><div class="num" id="minutos">00</div><div>Minutos</div></div>
-        <div class="tiempo"><div class="num" id="segundos">00</div><div>Segundos</div></div>
+            <div class="cancion">
+                <h3>2. Ay Mujer - Daske Galtan</h3>
+                <iframe style="border-radius:12px" src="https://www.youtube.com/embed/DnuccCWU7-M" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+            <div class="cancion">
+                <h3>3. My Girl - Gonzalo Genek</h3>
+                <iframe style="border-radius:12px" src="https://www.youtube.com/embed/qd_JpylBJAM" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Hecho con amor para ti ❤️</p>
+        </div>
     </div>
 
-    <div class="frase" id="fraseAleatoria"></div>
+    <script>
+        // CONTADOR DESDE 06/07/2026 4:23pm
+        const fechaInicio = new Date("2026-07-06T16:23:00");
 
-    <h2>Una carta para ti</h2>
-    <div class="carta">
-        Hola mi amor Lucero,<br><br>
-        El 06/06/2026 empezó lo más bonito de mi vida. Desde ese día supe que eras tú.
-        Eres mi risa en los días malos, mi paz en el caos y mi persona favorita. <br><br>
-        Gracias por elegirme y por hacerme el chico más feliz del mundo. 
-        Prometo cuidarte, hacerte reír y amarte cada día más. <br><br>
-        Este contador es para recordarnos todo lo que llevamos juntos. <br><br>
-        Te amo con todo mi corazón. <br>
-        - Yallico
-    </div>
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio;
 
-    <h2>Nuestra Playlist ❤️</h2>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-    <h2>Toca aquí</h2>
-    <button class="btn" onclick="lluviaCorazones()">Te Amo ❤️</button>
+            document.getElementById("dias").innerText = dias;
+            document.getElementById("horas").innerText = horas;
+            document.getElementById("minutos").innerText = minutos;
+            document.getElementById("segundos").innerText = segundos;
+        }
 
-</div>
-
-<script>
-    const fechaInicio = new Date("2026-06-06 00:00:00").getTime(); 
-    function actualizarContador(){
-        const ahora = new Date().getTime(); const diferencia = ahora - fechaInicio;
-        document.getElementById("dias").innerText = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-        document.getElementById("horas").innerText = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
-        document.getElementById("minutos").innerText = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
-        document.getElementById("segundos").innerText = Math.floor((diferencia % (1000 * 60)) / 1000).toString().padStart(2,'0');
-    }
-    setInterval(actualizarContador, 1000); actualizarContador();
-
-    const frases = ["Eres mi persona favorita ❤️","06/06/2026 el mejor día de mi vida","Contigo todo es mejor","Gracias por existir, Lucero","Te pienso a cada segundo","Eres mi lugar seguro"];
-    document.getElementById("fraseAleatoria").innerText = frases[Math.floor(Math.random() * frases.length)];
-    setInterval(()=>{document.getElementById("fraseAleatoria").innerText = frases[Math.floor(Math.random() * frases.length)];}, 5000);
-
-    const btnTema = document.getElementById('btnTema'); const body = document.body;
-    if(localStorage.getItem('tema')==='light'){body.classList.add('light-mode');btnTema.innerText='☀️';}
-    btnTema.addEventListener('click',()=>{body.classList.toggle('light-mode');
-        if(body.classList.contains('light-mode')){localStorage.setItem('tema','light');btnTema.innerText='☀️';}
-        else{localStorage.setItem('tema','dark');btnTema.innerText='🌙';}
-    });
-
-    const musica = document.getElementById('musica'); const btnMusica = document.getElementById('btnMusica');
-    let reproduciendo = false;
-    btnMusica.addEventListener('click',()=>{
-        if(reproduciendo){musica.pause(); btnMusica.innerText='▶️'; reproduciendo=false;}
-        else{musica.play(); btnMusica.innerText='⏸️'; reproduciendo=true;}
-    });
-
-    function crearCorazon(){
-        const corazon = document.createElement('div'); corazon.classList.add('corazon-caer'); corazon.innerText = '❤️';
-        corazon.style.left = Math.random() * 100 + 'vw';
-        corazon.style.animationDuration = Math.random() * 3 + 3 + 's';
-        document.getElementById('corazones').appendChild(corazon);
-        setTimeout(()=>corazon.remove(), 5000);
-    }
-    setInterval(crearCorazon, 300);
-    function lluviaCorazones(){for(let i=0; i<50; i++){setTimeout(crearCorazon, i*50);}}
-</script>
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    </script>
 </body>
 </html>
