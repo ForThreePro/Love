@@ -1,214 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Lucero Paucar 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Lucero ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    background: linear-gradient(135deg, #ff9ec9 0%, #ffd6e8 100%);
-    font-family: 'Poppins', sans-serif; overflow: hidden; height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-  }
-  canvas { position: fixed; top:0; left:0; z-index: 0; }
-  
-  .container {
-    position: relative; z-index: 2; text-align: center; 
-    background: rgba(255,255,255,0.95); padding: 40px; border-radius: 30px;
-    box-shadow: 0 15px 50px rgba(214,51,132,0.3); max-width: 550px; animation: fadeIn 1s;
-  }
-  @keyframes fadeIn { from{opacity:0; transform:scale(0.8)} to{opacity:1; transform:scale(1)} }
-  h1 { color: #d63384; font-size: 2.5em; margin-bottom: 10px; font-family: 'Dancing Script', cursive; }
-  .btn {
-    padding: 15px 40px; font-size: 1.3em; border: none; border-radius: 50px;
-    cursor: pointer; margin: 10px; font-weight: bold; transition: 0.3s;
-  }
-  #si { background: #ff5e94; color: white; }
-  #si:hover { transform: scale(1.1) rotate(-2deg); box-shadow: 0 10px 30px rgba(255,94,148,0.5); }
-  #no { background: white; color: #ff5e94; position: absolute; border: 2px solid #ff5e94; transition: all 0.2s; }
-  
-  #btnMusica {
-    position: fixed; top: 20px; right: 20px; z-index: 999;
-    background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
-    width: 50px; height: 50px; font-size: 1.5em; cursor: pointer; animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
-  
-  .piropos { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0; }
-  .piropo {
-    background: linear-gradient(45deg, #ff5e94, #ff9ec9); color: white; 
-    padding: 10px 18px; border-radius: 25px; font-weight: 600; animation: pop 0.5s;
-  }
-  @keyframes pop { 0%{transform:scale(0) rotate(-180deg)} 100%{transform:scale(1) rotate(0)} }
-  
-  #carta {
-    font-family: 'Dancing Script', cursive; font-size: 1.5em; color: #d63384;
-    text-align: left; margin-top: 20px; min-height: 120px; line-height: 1.6;
-  }
-  .cursor { animation: blink 1s infinite; }
-  @keyframes blink { 50%{opacity:0} }
-  .hidden { display: none; }
-  
-  /* LLUVIA DE NOMBRES */
-  .nombre-flotante {
-    position: fixed; font-size: 1.5em; font-weight: bold; color: #ff5e94;
-    pointer-events: none; animation: flotar 4s linear forwards; z-index: 10;
-    text-shadow: 0 2px 10px rgba(255,94,148,0.3);
-  }
-  @keyframes flotar {
-    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-  }
-  
-  /* ANILLO 3D */
-  #pantalla3 { animation: zoom 1s; }
-  @keyframes zoom { from{transform:scale(0.5)} to{transform:scale(1)} }
-  .anillo {
-    width: 150px; height: 150px; margin: 20px auto; position: relative;
-    animation: girar 3s linear infinite; transform-style: preserve-3d;
-  }
-  @keyframes girar { from{transform: rotateY(0deg)} to{transform: rotateY(360deg)} }
-  .anillo-circulo {
-    width: 150px; height: 150px; border: 12px solid #ffd700; border-radius: 50%;
-    box-shadow: 0 0 30px #ffd700, inset 0 0 20px #fff;
-  }
-  .diamante {
-    width: 30px; height: 30px; background: white; position: absolute;
-    top: -15px; left: 60px; transform: rotate(45deg);
-    box-shadow: 0 0 20px rgba(255,255,255,0.8);
-  }
-  .btn-final { background: #ff5e94; color: white; font-size: 1.5em; padding: 20px 50px; }
-  .btn-final:hover { transform: scale(1.1); }
+    :root{--rosa:#ff4d8d;--fondo:#1a001a;--fondo-light:#fff0f5;--texto-light:#333;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:linear-gradient(135deg, #1a001a, #4d0033);color:#fff;font-family:'Poppins',sans-serif;text-align:center;overflow-x:hidden;transition:0.5s;padding-bottom:100px;}
+    body.light-mode{background:linear-gradient(135deg, #fff0f5, #ffe6f0);color:var(--texto-light);}
+    #corazones{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+    .corazon-caer{position:absolute;color:var(--rosa);font-size:20px;animation:caer 5s linear infinite;opacity:0.7;}
+    @keyframes caer{0%{transform:translateY(-10vh) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);}}
+    .caja{background:rgba(255,255,255,0.05);backdrop-filter:blur(15px);border:1px solid rgba(255,77,141,0.3);border-radius:20px;padding:40px 30px;max-width:700px;width:90%;margin:40px auto;box-shadow:0 0 40px rgba(255,77,141,0.3);position:relative;z-index:2;}
+    body.light-mode .caja{background:rgba(255,255,255,0.7);border:1px solid rgba(255,77,141,0.2);}
+    h1{font-family:'Dancing Script';font-size:3em;color:var(--rosa);margin-bottom:10px;}
+    h2{font-family:'Dancing Script';color:var(--rosa);margin:30px 0 15px;font-size:2em;}
+    .contador{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}
+    .tiempo{background:rgba(255,77,141,0.15);border:1px solid var(--rosa);border-radius:12px;padding:20px 15px;min-width:90px;}
+    .tiempo .num{font-size:2.5em;font-weight:600;color:var(--rosa);}
+    .carta{text-align:left;background:rgba(0,0,0,0.2);padding:20px;border-radius:12px;line-height:1.8;font-size:1.1em;}
+    body.light-mode .carta{background:rgba(255,255,255,0.8);}
+    .frase{font-family:'Dancing Script';font-size:1.5em;color:var(--rosa);margin:20px 0;min-height:50px;}
+    .btn{background:var(--rosa);color:#fff;padding:12px 25px;border:none;border-radius:50px;font-weight:600;cursor:pointer;margin:10px;transition:0.3s;font-size:1em;}
+    .btn:hover{transform:scale(1.05);box-shadow:0 0 20px var(--rosa);}
+    #btnTema{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;z-index:999;}
+    #btnMusica{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:50%;z-index:999;}
+    iframe{border-radius:12px;margin-top:15px;}
+    @media(max-width:600px){.tiempo{min-width:70px;}.tiempo .num{font-size:2em;}}
 </style>
 </head>
 <body>
 
-<canvas id="hearts"></canvas>
+<div id="corazones"></div>
 
-<button id="btnMusica" onclick="toggleMusica()">▶️</button>
+<button id="btnMusica" class="btn">▶️</button>
+<button id="btnTema" class="btn">🌙</button>
+
 <audio id="musica" loop>
-  <source src="musica.mp3" type="audio/mpeg">
+    <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container" id="pantalla1">
-  <h1>Lucero Paucar 🥺</h1>
-  <p style="color:#a63a6a; font-size:1.2em;">Tengo algo muy importante que decirte...</p>
-  <h1>¿Quieres ser mi novia?</h1>
-  <button class="btn" id="si" onclick="aceptar()">SÍ ❤️</button>
-  <button class="btn" id="no">NO</button>
-</div>
+<div class="caja">
+    <h1>Para Lucero ❤️</h1>
+    <p>Juntos desde el 06/06/2026</p>
+    
+    <div class="contador">
+        <div class="tiempo"><div class="num" id="dias">00</div><div>Días</div></div>
+        <div class="tiempo"><div class="num" id="horas">00</div><div>Horas</div></div>
+        <div class="tiempo"><div class="num" id="minutos">00</div><div>Minutos</div></div>
+        <div class="tiempo"><div class="num" id="segundos">00</div><div>Segundos</div></div>
+    </div>
 
-<div class="container hidden" id="pantalla2">
-  <h1>¡Sabía que dirías SÍ! 😍💖</h1>
-  <p style="font-size:1.2em; color:#a63a6a;">Porque tú eres:</p>
-  <div class="piropos" id="piropos"></div>
-  <div id="carta"></div>
-  <button class="btn" style="margin-top:20px; background:#ff5e94; color:white;" onclick="propuesta()">Continuar 💍</button>
-</div>
+    <div class="frase" id="fraseAleatoria"></div>
 
-<div class="container hidden" id="pantalla3">
-  <h1>Última pregunta... 🥺</h1>
-  <div class="anillo">
-    <div class="anillo-circulo"></div>
-    <div class="diamante"></div>
-  </div>
-  <h1 style="font-size:2em;">¿Aceptas ser mi novia oficial?</h1>
-  <button class="btn btn-final" onclick="final()">SÍ, ACEPTO 💖</button>
+    <h2>Una carta para ti</h2>
+    <div class="carta">
+        Hola mi amor Lucero,<br><br>
+        El 06/06/2026 empezó lo más bonito de mi vida. Desde ese día supe que eras tú.
+        Eres mi risa en los días malos, mi paz en el caos y mi persona favorita. <br><br>
+        Gracias por elegirme y por hacerme el chico más feliz del mundo. 
+        Prometo cuidarte, hacerte reír y amarte cada día más. <br><br>
+        Este contador es para recordarnos todo lo que llevamos juntos. <br><br>
+        Te amo con todo mi corazón. <br>
+        - Yallico
+    </div>
+
+    <h2>Nuestra Playlist ❤️</h2>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+    <h2>Toca aquí</h2>
+    <button class="btn" onclick="lluviaCorazones()">Te Amo ❤️</button>
+
 </div>
 
 <script>
-// CORAZONES
-const canvas = document.getElementById('hearts'); const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-let hearts = [];
-function Heart(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height-50; this.size=Math.random()*15+10; this.speed=Math.random()*2+1; this.opacity=0.6; }
-Heart.prototype.draw=function(){ ctx.fillStyle=`rgba(255,105,180,${this.opacity})`; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
-function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); if(hearts.length<50) hearts.push(new Heart()); hearts.forEach((h,i)=>{ h.y+=h.speed; h.opacity-=0.002; h.draw(); if(h.y>canvas.height || h.opacity<=0) hearts.splice(i,1); }); requestAnimationFrame(animate); }
-animate();
+    const fechaInicio = new Date("2026-06-06 00:00:00").getTime(); 
+    function actualizarContador(){
+        const ahora = new Date().getTime(); const diferencia = ahora - fechaInicio;
+        document.getElementById("dias").innerText = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        document.getElementById("horas").innerText = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
+        document.getElementById("minutos").innerText = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
+        document.getElementById("segundos").innerText = Math.floor((diferencia % (1000 * 60)) / 1000).toString().padStart(2,'0');
+    }
+    setInterval(actualizarContador, 1000); actualizarContador();
 
-// MUSICA
-const musica = document.getElementById('musica'); let reproduciendo = false;
-function toggleMusica(){ if(reproduciendo){ musica.pause(); btnMusica.innerHTML='▶️'; } else { musica.play(); btnMusica.innerHTML='⏸️'; } reproduciendo = !reproduciendo; }
+    const frases = ["Eres mi persona favorita ❤️","06/06/2026 el mejor día de mi vida","Contigo todo es mejor","Gracias por existir, Lucero","Te pienso a cada segundo","Eres mi lugar seguro"];
+    document.getElementById("fraseAleatoria").innerText = frases[Math.floor(Math.random() * frases.length)];
+    setInterval(()=>{document.getElementById("fraseAleatoria").innerText = frases[Math.floor(Math.random() * frases.length)];}, 5000);
 
-// BOTON NO INFINITO
-const frasesNo = [
-  'NO', '¿Segura? 🥺', 'Piénsalo bien', 'Dale otra oportunidad', 'Porfaaa', 
-  'Última oportunidad', '¿En serio NO?', 'Me vas a romper el corazón', 'Inténtalo',
-  'Solo di SÍ', 'Te espero', 'No seas mala', 'Por Lucerito', '¿Y si SÍ?',
-  'Te lo ruego', 'Una más', 'Ya pues', 'Te amo', 'Dale click al SÍ', 'Rendición 😭'
-];
-let contadorNo = 0;
-const btnNo = document.getElementById('no');
-btnNo.addEventListener('mouseover', ()=>{ 
-  const maxX = window.innerWidth - btnNo.offsetWidth - 20;
-  const maxY = window.innerHeight - btnNo.offsetHeight - 20;
-  btnNo.style.left = Math.random()*maxX + 'px';
-  btnNo.style.top = Math.random()*maxY + 'px';
-  btnNo.innerText = frasesNo[contadorNo % frasesNo.length];
-  contadorNo++;
-  btnNo.style.transform = `rotate(${Math.random()*20-10}deg)`;
-});
+    const btnTema = document.getElementById('btnTema'); const body = document.body;
+    if(localStorage.getItem('tema')==='light'){body.classList.add('light-mode');btnTema.innerText='☀️';}
+    btnTema.addEventListener('click',()=>{body.classList.toggle('light-mode');
+        if(body.classList.contains('light-mode')){localStorage.setItem('tema','light');btnTema.innerText='☀️';}
+        else{localStorage.setItem('tema','dark');btnTema.innerText='🌙';}
+    });
 
-// LLUVIA DE NOMBRES
-function lluviaNombres(){
-  const nombres = ['Lucero', 'Mi amor', 'Preciosa', 'Chiquita', 'Bonita', 'Mi vida', 'Única', 'Amor'];
-  setInterval(()=>{
-    let n = document.createElement('div');
-    n.className = 'nombre-flotante';
-    n.innerText = nombres[Math.floor(Math.random()*nombres.length)];
-    n.style.left = Math.random()*100+'vw';
-    n.style.fontSize = Math.random()*10+20+'px';
-    document.body.appendChild(n);
-    setTimeout(()=>n.remove(), 4000);
-  }, 300);
-}
+    const musica = document.getElementById('musica'); const btnMusica = document.getElementById('btnMusica');
+    let reproduciendo = false;
+    btnMusica.addEventListener('click',()=>{
+        if(reproduciendo){musica.pause(); btnMusica.innerText='▶️'; reproduciendo=false;}
+        else{musica.play(); btnMusica.innerText='⏸️'; reproduciendo=true;}
+    });
 
-// MAQUINA DE ESCRIBIR
-function escribirCarta(texto, elemento){
-  let i = 0;
-  function type(){
-    if(i < texto.length){
-      elemento.innerHTML = texto.substring(0, i+1) + '<span class="cursor">|</span>';
-      i++; setTimeout(type, 50);
-    } else { elemento.innerHTML = texto; }
-  }
-  type();
-}
-
-// ACEPTAR PANTALLA 2
-function aceptar(){
-  document.getElementById('pantalla1').classList.add('hidden');
-  document.getElementById('pantalla2').classList.remove('hidden');
-  musica.play(); btnMusica.innerHTML='⏸️'; reproduciendo=true;
-  lluviaNombres();
-  
-  const piropos = ['Hermosa','Bonita','Preciosa','Chiquita','Flaquita','Lucero','Única','Especial','Dulce','Mi favorita'];
-  const cont = document.getElementById('piropos');
-  piropos.forEach((p,i)=> setTimeout(()=>{ 
-    let span=document.createElement('span'); span.className='piropo'; span.textContent=p; cont.appendChild(span);
-  }, i*150));
-  
-  setTimeout(()=>{
-    const textoCarta = `Lucero Paucar...
-Desde que supe tu nombre supe que iluminarías mi vida.
-Eres chiquita, bonita y flaquita, pero con un corazón gigante.
-Prometo cuidarte, hacerte reír y quererte todos los días. 💕`;
-    escribirCarta(textoCarta, document.getElementById('carta'));
-  }, 1200);
-}
-
-// IR A PROPUESTA FINAL
-function propuesta(){
-  document.getElementById('pantalla2').classList.add('hidden');
-  document.getElementById('pantalla3').classList.remove('hidden');
-}
-
-// FINAL
-function final(){
-  alert('¡Eres oficialmente mi novia! 💖 Te amo Lucero');
-}
+    function crearCorazon(){
+        const corazon = document.createElement('div'); corazon.classList.add('corazon-caer'); corazon.innerText = '❤️';
+        corazon.style.left = Math.random() * 100 + 'vw';
+        corazon.style.animationDuration = Math.random() * 3 + 3 + 's';
+        document.getElementById('corazones').appendChild(corazon);
+        setTimeout(()=>corazon.remove(), 5000);
+    }
+    setInterval(crearCorazon, 300);
+    function lluviaCorazones(){for(let i=0; i<50; i++){setTimeout(crearCorazon, i*50);}}
 </script>
 </body>
 </html>
