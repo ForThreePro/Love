@@ -51,9 +51,36 @@
   @keyframes blink { 50%{opacity:0} }
   .hidden { display: none; }
   
-  /* CONFETTI */
-  .confetti { position: fixed; width: 10px; height: 10px; background: #ff5e94; position: absolute; animation: fall 3s linear infinite; }
-  @keyframes fall { to{transform: translateY(100vh) rotate(360deg)} }
+  /* LLUVIA DE NOMBRES */
+  .nombre-flotante {
+    position: fixed; font-size: 1.5em; font-weight: bold; color: #ff5e94;
+    pointer-events: none; animation: flotar 4s linear forwards; z-index: 10;
+    text-shadow: 0 2px 10px rgba(255,94,148,0.3);
+  }
+  @keyframes flotar {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  /* ANILLO 3D */
+  #pantalla3 { animation: zoom 1s; }
+  @keyframes zoom { from{transform:scale(0.5)} to{transform:scale(1)} }
+  .anillo {
+    width: 150px; height: 150px; margin: 20px auto; position: relative;
+    animation: girar 3s linear infinite; transform-style: preserve-3d;
+  }
+  @keyframes girar { from{transform: rotateY(0deg)} to{transform: rotateY(360deg)} }
+  .anillo-circulo {
+    width: 150px; height: 150px; border: 12px solid #ffd700; border-radius: 50%;
+    box-shadow: 0 0 30px #ffd700, inset 0 0 20px #fff;
+  }
+  .diamante {
+    width: 30px; height: 30px; background: white; position: absolute;
+    top: -15px; left: 60px; transform: rotate(45deg);
+    box-shadow: 0 0 20px rgba(255,255,255,0.8);
+  }
+  .btn-final { background: #ff5e94; color: white; font-size: 1.5em; padding: 20px 50px; }
+  .btn-final:hover { transform: scale(1.1); }
 </style>
 </head>
 <body>
@@ -67,7 +94,7 @@
 
 <div class="container" id="pantalla1">
   <h1>Lucero Paucar 🥺</h1>
-  <p style="color:#a63a6a;">Tengo algo muy importante que decirte...</p>
+  <p style="color:#a63a6a; font-size:1.2em;">Tengo algo muy importante que decirte...</p>
   <h1>¿Quieres ser mi novia?</h1>
   <button class="btn" id="si" onclick="aceptar()">SÍ ❤️</button>
   <button class="btn" id="no">NO</button>
@@ -78,10 +105,21 @@
   <p style="font-size:1.2em; color:#a63a6a;">Porque tú eres:</p>
   <div class="piropos" id="piropos"></div>
   <div id="carta"></div>
+  <button class="btn" style="margin-top:20px; background:#ff5e94; color:white;" onclick="propuesta()">Continuar 💍</button>
+</div>
+
+<div class="container hidden" id="pantalla3">
+  <h1>Última pregunta... 🥺</h1>
+  <div class="anillo">
+    <div class="anillo-circulo"></div>
+    <div class="diamante"></div>
+  </div>
+  <h1 style="font-size:2em;">¿Aceptas ser mi novia oficial?</h1>
+  <button class="btn btn-final" onclick="final()">SÍ, ACEPTO 💖</button>
 </div>
 
 <script>
-// 1. CORAZONES + PARTICULAS
+// CORAZONES
 const canvas = document.getElementById('hearts'); const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth; canvas.height = window.innerHeight;
 let hearts = [];
@@ -90,11 +128,11 @@ Heart.prototype.draw=function(){ ctx.fillStyle=`rgba(255,105,180,${this.opacity}
 function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); if(hearts.length<50) hearts.push(new Heart()); hearts.forEach((h,i)=>{ h.y+=h.speed; h.opacity-=0.002; h.draw(); if(h.y>canvas.height || h.opacity<=0) hearts.splice(i,1); }); requestAnimationFrame(animate); }
 animate();
 
-// 2. MUSICA
+// MUSICA
 const musica = document.getElementById('musica'); let reproduciendo = false;
 function toggleMusica(){ if(reproduciendo){ musica.pause(); btnMusica.innerHTML='▶️'; } else { musica.play(); btnMusica.innerHTML='⏸️'; } reproduciendo = !reproduciendo; }
 
-// 3. BOTON NO INFINITO CON 20 FRASES
+// BOTON NO INFINITO
 const frasesNo = [
   'NO', '¿Segura? 🥺', 'Piénsalo bien', 'Dale otra oportunidad', 'Porfaaa', 
   'Última oportunidad', '¿En serio NO?', 'Me vas a romper el corazón', 'Inténtalo',
@@ -108,27 +146,26 @@ btnNo.addEventListener('mouseover', ()=>{
   const maxY = window.innerHeight - btnNo.offsetHeight - 20;
   btnNo.style.left = Math.random()*maxX + 'px';
   btnNo.style.top = Math.random()*maxY + 'px';
-  btnNo.innerText = frasesNo[contadorNo % frasesNo.length]; // INFINITO
+  btnNo.innerText = frasesNo[contadorNo % frasesNo.length];
   contadorNo++;
-  btnNo.style.transform = `rotate(${Math.random()*20-10}deg)`; // tiembla
+  btnNo.style.transform = `rotate(${Math.random()*20-10}deg)`;
 });
 
-// 4. CONFETTI AL ACEPTAR
-function lanzarConfetti(){
-  for(let i=0; i<100; i++){
-    setTimeout(()=>{
-      let c = document.createElement('div');
-      c.className = 'confetti';
-      c.style.left = Math.random()*100+'vw';
-      c.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
-      c.style.animationDuration = Math.random()*2+2+'s';
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(), 3000);
-    }, i*20);
-  }
+// LLUVIA DE NOMBRES
+function lluviaNombres(){
+  const nombres = ['Lucero', 'Mi amor', 'Preciosa', 'Chiquita', 'Bonita', 'Mi vida', 'Única', 'Amor'];
+  setInterval(()=>{
+    let n = document.createElement('div');
+    n.className = 'nombre-flotante';
+    n.innerText = nombres[Math.floor(Math.random()*nombres.length)];
+    n.style.left = Math.random()*100+'vw';
+    n.style.fontSize = Math.random()*10+20+'px';
+    document.body.appendChild(n);
+    setTimeout(()=>n.remove(), 4000);
+  }, 300);
 }
 
-// 5. MAQUINA DE ESCRIBIR
+// MAQUINA DE ESCRIBIR
 function escribirCarta(texto, elemento){
   let i = 0;
   function type(){
@@ -140,14 +177,14 @@ function escribirCarta(texto, elemento){
   type();
 }
 
-// 6. ACEPTAR
+// ACEPTAR PANTALLA 2
 function aceptar(){
   document.getElementById('pantalla1').classList.add('hidden');
   document.getElementById('pantalla2').classList.remove('hidden');
   musica.play(); btnMusica.innerHTML='⏸️'; reproduciendo=true;
-  lanzarConfetti(); // EFECTO NUEVO
+  lluviaNombres();
   
-  const piropos = ['Hermosa','Bonita','Preciosa','Chiquita','Flaquita','Lucero','Única','Especial','Dulce','Mi favorita','Mi universo','Mi todo'];
+  const piropos = ['Hermosa','Bonita','Preciosa','Chiquita','Flaquita','Lucero','Única','Especial','Dulce','Mi favorita'];
   const cont = document.getElementById('piropos');
   piropos.forEach((p,i)=> setTimeout(()=>{ 
     let span=document.createElement('span'); span.className='piropo'; span.textContent=p; cont.appendChild(span);
@@ -157,10 +194,20 @@ function aceptar(){
     const textoCarta = `Lucero Paucar...
 Desde que supe tu nombre supe que iluminarías mi vida.
 Eres chiquita, bonita y flaquita, pero con un corazón gigante.
-Prometo cuidarte, hacerte reír y quererte todos los días.
-¿Me das la oportunidad de ser tu novio? 💕`;
+Prometo cuidarte, hacerte reír y quererte todos los días. 💕`;
     escribirCarta(textoCarta, document.getElementById('carta'));
   }, 1200);
+}
+
+// IR A PROPUESTA FINAL
+function propuesta(){
+  document.getElementById('pantalla2').classList.add('hidden');
+  document.getElementById('pantalla3').classList.remove('hidden');
+}
+
+// FINAL
+function final(){
+  alert('¡Eres oficialmente mi novia! 💖 Te amo Lucero');
 }
 </script>
 </body>
