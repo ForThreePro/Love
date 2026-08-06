@@ -27,12 +27,7 @@
     margin: 0 auto 40px;
   }
   .tiempo { display: flex; justify-content: space-around; margin-top: 15px; flex-wrap: wrap; gap: 10px; }
-  .tiempo div { 
-    background: #ffe3e9; 
-    padding: 15px; 
-    border-radius: 12px; 
-    min-width: 80px;
-  }
+  .tiempo div { background: #ffe3e9; padding: 15px; border-radius: 12px; min-width: 80px; }
   .tiempo span { font-size: 2rem; font-weight: bold; color: #d6336c; display: block; }
 
   .galeria {
@@ -50,7 +45,7 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     transition: transform 0.3s;
   }
-  .galeria img:hover { transform: scale(1.06) rotate(1deg); }
+  .galeria img:hover { transform: scale(1.06); }
 
   .mensaje {
     margin: 30px auto;
@@ -60,24 +55,7 @@
     max-width: 600px;
   }
 
-  audio {
-    margin-top: 20px;
-    width: 300px;
-    max-width: 90%;
-    border-radius: 50px;
-  }
-
-  .corazon {
-    position: fixed;
-    color: #ff4d6d;
-    font-size: 20px;
-    animation: caer 4s linear infinite;
-    top: -20px;
-    pointer-events: none;
-  }
-  @keyframes caer {
-    to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-  }
+  audio { margin-top: 20px; width: 300px; max-width: 90%; }
 </style>
 </head>
 <body>
@@ -98,11 +76,11 @@
 
   <h2>Nuestra galería 💕</h2>
   <div class="galeria">
-    <img src="https://files.evogb.win/rA6oiw.jpg" alt="Cristhofer y Lucero 1">
-    <img src="https://files.evogb.win/WCDwKJ.jpg" alt="Cristhofer y Lucero 2">
-    <img src="https://files.evogb.win/Ya4UNB.jpg" alt="Cristhofer y Lucero 3">
-    <img src="https://files.evogb.win/zGwPRv.jpg" alt="Cristhofer y Lucero 4">
-    <img src="https://files.evogb.win/dh6Y5p.jpg" alt="Cristhofer y Lucero 5">
+    <img src="https://files.evogb.win/rA6oiw.jpg" alt="Foto 1">
+    <img src="https://files.evogb.win/WCDwKJ.jpg" alt="Foto 2">
+    <img src="https://files.evogb.win/Ya4UNB.jpg" alt="Foto 3">
+    <img src="https://files.evogb.win/zGwPRv.jpg" alt="Foto 4">
+    <img src="https://files.evogb.win/dh6Y5p.jpg" alt="Foto 5">
   </div>
 
   <p class="mensaje">
@@ -111,46 +89,34 @@
     Por muchos meses más juntos ✨
   </p>
 
-  <audio controls autoplay loop>
+  <audio id="musica" controls loop>
     <source src="musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
   </audio>
 
 <script>
-  // Contador exacto desde 6 de Julio 2026, 4:23 PM
-  const fechaInicio = new Date("2026-07-06T16:23:00");
+  // Fecha exacta: 6 de Julio 2026, 4:23 PM
+  const fechaInicio = new Date(2026, 6, 6, 16, 23, 0); // Mes 6 = Julio
   
   function actualizarContador() {
     const ahora = new Date();
     let diff = ahora - fechaInicio;
     
+    if(diff < 0) diff = 0; // por si acaso
+
     const dias = Math.floor(diff / (1000*60*60*24));
-    diff -= dias * (1000*60*60*24);
-    const horas = Math.floor(diff / (1000*60*60));
-    diff -= horas * (1000*60*60);
-    const minutos = Math.floor(diff / (1000*60));
-    diff -= minutos * (1000*60);
-    const segundos = Math.floor(diff / 1000);
+    const horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutos = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const segundos = Math.floor((diff % (1000*60)) / 1000);
 
     document.getElementById("dias").textContent = dias;
     document.getElementById("horas").textContent = horas;
     document.getElementById("minutos").textContent = minutos;
     document.getElementById("segundos").textContent = segundos;
   }
-  setInterval(actualizarContador, 1000);
+  
+  // Actualizar al cargar y cada segundo
   actualizarContador();
-
-  // Corazones cayendo
-  function crearCorazon() {
-    const corazon = document.createElement("div");
-    corazon.classList.add("corazon");
-    corazon.innerHTML = "❤️";
-    corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.animationDuration = Math.random() * 2 + 3 + "s";
-    document.body.appendChild(corazon);
-    setTimeout(() => corazon.remove(), 5000);
-  }
-  setInterval(crearCorazon, 400);
+  setInterval(actualizarContador, 1000);
 </script>
 
 </body>
