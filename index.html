@@ -3,120 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cristhofer & Lucero - 1 Mes ❤️</title>
+<title>Cristhofer & Lucero ♡</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fec3a6, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    min-height: 100vh;
+    padding: 30px 15px;
+    color: #fff;
+  }
+  @keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 35px 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 20px;
-    overflow-x: hidden;
   }
-  h1 { color: #d6336c; margin-bottom: 5px; font-size: 2.6rem; }
-  .nombres { font-size: 1.4rem; color: #a61e4d; margin-bottom: 10px; font-weight: 600; }
-  .sub { font-size: 1rem; margin-bottom: 30px; color: #555; }
-  
-  .contador {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(214, 51, 108, 0.2);
-    max-width: 520px;
-    margin: 0 auto 40px;
+
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
   }
-  .tiempo { display: flex; justify-content: space-around; margin-top: 15px; flex-wrap: wrap; gap: 10px; }
-  .tiempo div { background: #ffe3e9; padding: 15px; border-radius: 12px; min-width: 80px; }
-  .tiempo span { font-size: 2rem; font-weight: bold; color: #d6336c; display: block; }
+  .nombres {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff0f5;
+  }
+  .sub {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 25px;
+  }
+
+  .tiempo {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tiempo div {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 10px;
+    border-radius: 15px;
+    min-width: 85px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .tiempo span {
+    font-size: 2.2rem;
+    font-weight: 700;
+    display: block;
+  }
+  .tiempo label {
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
 
   .galeria {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
-    max-width: 900px;
-    margin: 0 auto 40px;
   }
   .galeria img {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    transition: transform 0.3s;
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.4s;
   }
-  .galeria img:hover { transform: scale(1.06); }
+  .galeria img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+  }
 
   .mensaje {
-    margin: 30px auto;
-    font-size: 1.3rem;
-    color: #d6336c;
+    font-size: 1.2rem;
     font-style: italic;
-    max-width: 600px;
+    line-height: 1.6;
   }
 
-  audio { margin-top: 20px; width: 300px; max-width: 90%; }
+  audio {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 50px;
+  }
 </style>
 </head>
 <body>
 
-  <h1>1 Mes Juntos ❤️</h1>
-  <p class="nombres">Cristhofer & Lucero</p>
-  <p class="sub">Desde el 06/07/2026 - 4:23pm</p>
+<div class="container">
 
-  <div class="contador">
-    <h2>Nuestro tiempo:</h2>
+  <div class="card">
+    <h1>1 Mes Juntos ♡</h1>
+    <p class="nombres">Cristhofer & Lucero</p>
+    <p class="sub">Desde el 06/07/2026 - 4:23pm</p>
+
+    <h3 style="margin-bottom: 15px;">Nuestro tiempo</h3>
     <div class="tiempo">
-      <div><span id="dias">0</span>Días</div>
-      <div><span id="horas">0</span>Horas</div>
-      <div><span id="minutos">0</span>Min</div>
-      <div><span id="segundos">0</span>Seg</div>
+      <div><span id="dias">0</span><label>Días</label></div>
+      <div><span id="horas">0</span><label>Horas</label></div>
+      <div><span id="minutos">0</span><label>Min</label></div>
+      <div><span id="segundos">0</span><label>Seg</label></div>
     </div>
   </div>
 
-  <h2>Nuestra galería 💕</h2>
-  <div class="galeria">
-    <img src="https://files.evogb.win/rA6oiw.jpg" alt="Foto 1">
-    <img src="https://files.evogb.win/WCDwKJ.jpg" alt="Foto 2">
-    <img src="https://files.evogb.win/Ya4UNB.jpg" alt="Foto 3">
-    <img src="https://files.evogb.win/zGwPRv.jpg" alt="Foto 4">
-    <img src="https://files.evogb.win/dh6Y5p.jpg" alt="Foto 5">
+  <div class="card">
+    <h2 style="margin-bottom: 20px;">Nuestra Galería 💕</h2>
+    <div class="galeria">
+      <img src="https://files.evogb.win/rA6oiw.jpg" alt="Recuerdo 1">
+      <img src="https://files.evogb.win/WCDwKJ.jpg" alt="Recuerdo 2">
+      <img src="https://files.evogb.win/Ya4UNB.jpg" alt="Recuerdo 3">
+      <img src="https://files.evogb.win/zGwPRv.jpg" alt="Recuerdo 4">
+      <img src="https://files.evogb.win/dh6Y5p.jpg" alt="Recuerdo 5">
+    </div>
   </div>
 
-  <p class="mensaje">
-    Gracias por este primer mes, Lucero. <br>
-    Eres mi persona favorita, Cristhofer. <br>
-    Por muchos meses más juntos ✨
-  </p>
+  <div class="card">
+    <p class="mensaje">
+      Gracias por este primer mes, mi amor. <br>
+      Cada segundo contigo vale oro. <br>
+      Por muchos meses más juntos ✨
+    </p>
+    <audio controls loop>
+      <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-  <audio id="musica" controls loop>
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
+</div>
 
 <script>
-  // Fecha exacta: 6 de Julio 2026, 4:23 PM
-  const fechaInicio = new Date(2026, 6, 6, 16, 23, 0); // Mes 6 = Julio
+  // Fecha exacta: 6 de Julio 2026, 4:23 PM - Hora Perú
+  const fechaInicio = new Date("2026-07-06T16:23:00-05:00");
   
   function actualizarContador() {
     const ahora = new Date();
-    let diff = ahora - fechaInicio;
-    
-    if(diff < 0) diff = 0; // por si acaso
+    let diff = ahora.getTime() - fechaInicio.getTime();
+    if(diff < 0) diff = 0;
 
-    const dias = Math.floor(diff / (1000*60*60*24));
-    const horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const minutos = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const segundos = Math.floor((diff % (1000*60)) / 1000);
+    const dias = Math.floor(diff / 86400000);
+    const horas = Math.floor((diff % 86400000) / 3600000);
+    const minutos = Math.floor((diff % 3600000) / 60000);
+    const segundos = Math.floor((diff % 60000) / 1000);
 
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = horas;
-    document.getElementById("minutos").textContent = minutos;
-    document.getElementById("segundos").textContent = segundos;
+    document.getElementById("dias").innerText = dias;
+    document.getElementById("horas").innerText = horas;
+    document.getElementById("minutos").innerText = minutos;
+    document.getElementById("segundos").innerText = segundos;
   }
   
-  // Actualizar al cargar y cada segundo
-  actualizarContador();
-  setInterval(actualizarContador, 1000);
+  window.onload = () => {
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+  }
 </script>
 
 </body>
