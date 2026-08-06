@@ -3,121 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cristhofer & Lucero - 1 Mes ❤️</title>
+<title>Para Ti Lucero ❤️</title>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    color: #333;
-    text-align: center;
+    background: #ffb3c1;
     padding: 20px;
-    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
   }
-  h1 { color: #d6336c; margin-bottom: 5px; font-size: 2.6rem; }
-  .nombres { font-size: 1.4rem; color: #a61e4d; margin-bottom: 20px; font-weight: 600; }
-  .sub { font-size: 1.1rem; margin-bottom: 30px; color: #555; }
-  
-  .contador {
+  .card {
     background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(214, 51, 108, 0.2);
-    max-width: 520px;
-    margin: 0 auto 40px;
-  }
-  .tiempo { display: flex; justify-content: space-around; margin-top: 15px; flex-wrap: wrap; gap: 10px; }
-  .tiempo div { 
-    background: #ffe3e9; 
-    padding: 15px; 
-    border-radius: 12px; 
-    min-width: 80px;
-  }
-  .tiempo span { font-size: 2rem; font-weight: bold; color: #d6336c; display: block; }
-
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    max-width: 900px;
-    margin: 0 auto 40px;
-  }
-  .galeria img {
+    border-radius: 25px;
+    padding: 30px 20px;
+    max-width: 500px;
     width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  h1 {
+    color: #e91e63;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+  }
+  .fecha {
+    color: #777;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+  .contador-box {
+    background: #fff0f3;
+    border: 2px dashed #ffb3c1;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  .contador-box h2 {
+    color: #e91e63;
+    margin-bottom: 15px;
+  }
+  .tiempo {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tiempo div {
+    background: white;
+    padding: 10px 12px;
+    border-radius: 12px;
+    min-width: 65px;
+  }
+  .tiempo span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e91e63;
+    display: block;
+  }
+  .carta {
+    text-align: left;
+    background: #fff8fa;
+    border-left: 5px solid #e91e63;
+    padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    transition: transform 0.3s;
   }
-  .galeria img:hover { transform: scale(1.06) rotate(1deg); }
-
-  .mensaje {
-    margin: 30px auto;
-    font-size: 1.3rem;
-    color: #d6336c;
-    font-style: italic;
-    max-width: 600px;
+  .carta h2 {
+    color: #e91e63;
+    margin-bottom: 15px;
+    text-align: center;
   }
-
-  audio {
-    margin-top: 20px;
-    width: 300px;
-    max-width: 90%;
-    border-radius: 50px;
-  }
-
-  .corazon {
-    position: fixed;
-    color: #ff4d6d;
-    font-size: 20px;
-    animation: caer 4s linear infinite;
-    top: -20px;
-    pointer-events: none;
-  }
-  @keyframes caer {
-    to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  .carta p {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 12px;
   }
 </style>
 </head>
 <body>
 
-  <h1>1 Mes Juntos ❤️</h1>
-  <p class="nombres">Cristhofer & Lucero</p>
-  <p class="sub">Desde el 6 de julio de 2026</p>
+<div class="card">
+  <h1>Para Ti Lucero ❤️</h1>
+  <p class="fecha">Desde que somos novios: 06/07/2026 - 4:23pm</p>
 
-  <div class="contador">
-    <h2>Nuestro tiempo:</h2>
+  <div class="contador-box">
+    <h2>Siendo Novios</h2>
+    <p>Llevamos juntos:</p>
     <div class="tiempo">
-      <div><span id="dias">0</span>Días</div>
-      <div><span id="horas">0</span>Horas</div>
-      <div><span id="minutos">0</span>Min</div>
-      <div><span id="segundos">0</span>Seg</div>
+      <div><span id="dias">0</span>días</div>
+      <div><span id="horas">0</span>horas</div>
+      <div><span id="minutos">0</span>minutos</div>
+      <div><span id="segundos">0</span>segundos</div>
     </div>
   </div>
 
-  <h2>Nuestra galería 💕</h2>
-  <div class="galeria">
-    <img src="https://files.evogb.win/rA6oiw.jpg" alt="Cristhofer y Lucero 1">
-    <img src="https://files.evogb.win/WCDwKJ.jpg" alt="Cristhofer y Lucero 2">
-    <img src="https://files.evogb.win/Ya4UNB.jpg" alt="Cristhofer y Lucero 3">
-    <img src="https://files.evogb.win/zGwPRv.jpg" alt="Cristhofer y Lucero 4">
-    <img src="https://files.evogb.win/dh6Y5p.jpg" alt="Cristhofer y Lucero 5">
+  <div class="carta">
+    <h2>Para mi novia ❤️</h2>
+    <p><b>Lucero:</b></p>
+    <p>El 06/07/2026 a las 4:23pm empezó lo más bonito de mi vida. 
+    Ese fue el momento exacto en que te dije "¿quieres ser mi novia?" y me dijiste que sí.</p>
+    <p>Desde ese segundo todo cambió. Cada canción de aquí es por ti y para ti.</p>
+    <p>Gracias por aceptar ser mía. Prometo cuidarte y hacerte feliz siempre.</p>
+    <p><b>- Cristhofer</b></p>
   </div>
-
-  <p class="mensaje">
-    Gracias por este primer mes, Lucero. <br>
-    Eres mi persona favorita, Cristhofer. <br>
-    Por muchos meses más juntos ✨
-  </p>
-
-  <audio controls autoplay loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
+</div>
 
 <script>
-  const fechaInicio = new Date("2026-07-06T00:00:00");
+  // Fecha exacta: 6 de Julio 2026, 4:23 PM
+  const fechaInicio = new Date("2026-07-06T16:23:00");
+  
   function actualizarContador() {
     const ahora = new Date();
     let diff = ahora - fechaInicio;
@@ -137,17 +130,6 @@
   }
   setInterval(actualizarContador, 1000);
   actualizarContador();
-
-  function crearCorazon() {
-    const corazon = document.createElement("div");
-    corazon.classList.add("corazon");
-    corazon.innerHTML = "❤️";
-    corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.animationDuration = Math.random() * 2 + 3 + "s";
-    document.body.appendChild(corazon);
-    setTimeout(() => corazon.remove(), 5000);
-  }
-  setInterval(crearCorazon, 400);
 </script>
 
 </body>
