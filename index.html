@@ -3,179 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cristhofer & Lucero ♡</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Lucero Mi Esposa ❤️</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+  
     * { margin: 0; padding: 0; box-sizing: border-box; }
+  
   body {
+    background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fec3a6, #ffdde1);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    min-height: 100vh;
-    padding: 30px 15px;
     color: #fff;
+    min-height: 100vh;
   }
-  @keyframes gradient {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+  
+  /* CORAZONES FLOTANDO */
+  .corazon {
+    position: fixed; top: -10vh; font-size: 1.8rem; color: rgba(255,255,255,0.6);
+    animation: caer 12s linear infinite; z-index: 0;
   }
-
+  @keyframes caer {
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
+  
   .container {
-    max-width: 900px;
-    margin: 0 auto;
+    position: relative; z-index: 2; text-align: center; padding: 50px 20px;
   }
-
-  .card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
-    padding: 35px 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-
+  
   h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 5px;
+    font-family: 'Great Vibes', cursive; font-size: 4.5rem;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.3); margin-bottom: 15px;
+    animation: latir 2s infinite;
   }
-  .nombres {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #fff0f5;
+  @keyframes latir { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+  
+  .subtitulo {
+    font-size: 1.4rem; margin-bottom: 30px; font-weight: 300;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   }
-  .sub {
-    font-size: 1rem;
-    opacity: 0.9;
-    margin-bottom: 25px;
+  
+  /* REPRODUCTOR */
+  .music-player {
+    margin: 30px 0; background: rgba(255,255,255,0.25); padding: 20px;
+    border-radius: 25px; backdrop-filter: blur(10px); display: inline-block;
   }
-
-  .tiempo {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+  .btn-music {
+    background: linear-gradient(90deg, #ff6b9d, #ff8fab); color: white; border: none; 
+    padding: 15px 40px; border-radius: 50px; font-size: 1.1rem; cursor: pointer; 
+    font-weight: 600; box-shadow: 0 5px 25px rgba(255,107,157,0.6); transition: 0.3s;
   }
-  .tiempo div {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 15px 10px;
-    border-radius: 15px;
-    min-width: 85px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-  .tiempo span {
-    font-size: 2.2rem;
-    font-weight: 700;
-    display: block;
-  }
-  .tiempo label {
-    font-size: 0.8rem;
-    opacity: 0.9;
-  }
-
+  .btn-music:hover { transform: scale(1.1); }
+  
+  /* GALERIA */
   .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; max-width: 1300px; margin: 40px auto;
   }
-  .galeria img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 20px;
-    border: 2px solid rgba(255,255,255,0.3);
-    transition: all 0.4s;
+  
+  .foto {
+    background: #fff; padding: 12px; border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25); transition: 0.4s;
   }
-  .galeria img:hover {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+  .foto:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 20px 50px rgba(255,105,180,0.5); }
+  .foto img {
+    width: 100%; height: 400px; object-fit: cover; border-radius: 15px;
   }
-
-  .mensaje {
-    font-size: 1.2rem;
-    font-style: italic;
-    line-height: 1.6;
+  
+  .frase {
+    margin-top: 50px; font-size: 1.8rem; font-family: 'Great Vibes', cursive;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   }
-
-  audio {
-    width: 100%;
-    margin-top: 15px;
-    border-radius: 50px;
+  
+  footer {
+    margin-top: 40px; font-size: 0.9rem; opacity: 0.8;
   }
 </style>
 </head>
 <body>
-
-<div class="container">
-
-  <div class="card">
-    <h1>1 Mes Juntos ♡</h1>
-    <p class="nombres">Cristhofer & Lucero</p>
-    <p class="sub">Desde el 06/07/2026 - 4:23pm</p>
-
-    <h3 style="margin-bottom: 15px;">Nuestro tiempo</h3>
-    <div class="tiempo">
-      <div><span id="dias">0</span><label>Días</label></div>
-      <div><span id="horas">0</span><label>Horas</label></div>
-      <div><span id="minutos">0</span><label>Min</label></div>
-      <div><span id="segundos">0</span><label>Seg</label></div>
+  <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+  
+  <div class="container">
+    <h1>Lucero Mi Esposa ❤️</h1>
+    <p class="subtitulo">Los mejores momentos de nuestra vida juntos</p>
+    
+    <div class="music-player">
+      <button class="btn-music" onclick="toggleMusic()">▶️ TOCA PARA ESCUCHAR</button>
     </div>
-  </div>
-
-  <div class="card">
-    <h2 style="margin-bottom: 20px;">Nuestra Galería 💕</h2>
+    
     <div class="galeria">
-      <img src="https://files.evogb.win/rA6oiw.jpg" alt="Recuerdo 1">
-      <img src="https://files.evogb.win/WCDwKJ.jpg" alt="Recuerdo 2">
-      <img src="https://files.evogb.win/Ya4UNB.jpg" alt="Recuerdo 3">
-      <img src="https://files.evogb.win/zGwPRv.jpg" alt="Recuerdo 4">
-      <img src="https://files.evogb.win/dh6Y5p.jpg" alt="Recuerdo 5">
+      <div class="foto"><img src="https://files.evogb.win/rA6oiw.jpg" alt="Nuestro recuerdo 1"></div>
+      <div class="foto"><img src="https://files.evogb.win/WCDwKJ.jpg" alt="Nuestro recuerdo 2"></div>
+      <div class="foto"><img src="https://files.evogb.win/Ya4UNB.jpg" alt="Nuestro recuerdo 3"></div>
+      <div class="foto"><img src="https://files.evogb.win/zGwPRv.jpg" alt="Nuestro recuerdo 4"></div>
+      <div class="foto"><img src="https://files.evogb.win/dh6Y5p.jpg" alt="Nuestro recuerdo 5"></div>
     </div>
+    
+    <p class="frase">"Contigo cada día es San Valentín"</p>
+    
+    <footer>Hecho con mucho amor para ti ❤️</footer>
   </div>
-
-  <div class="card">
-    <p class="mensaje">
-      Gracias por este primer mes, mi amor. <br>
-      Cada segundo contigo vale oro. <br>
-      Por muchos meses más juntos ✨
-    </p>
-    <audio controls loop>
-      <source src="musica.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-</div>
 
 <script>
-  // Fecha exacta: 6 de Julio 2026, 4:23 PM - Hora Perú
-  const fechaInicio = new Date("2026-07-06T16:23:00-05:00");
+  const audio = document.getElementById('musica');
+  const btn = document.querySelector('.btn-music');
   
-  function actualizarContador() {
-    const ahora = new Date();
-    let diff = ahora.getTime() - fechaInicio.getTime();
-    if(diff < 0) diff = 0;
-
-    const dias = Math.floor(diff / 86400000);
-    const horas = Math.floor((diff % 86400000) / 3600000);
-    const minutos = Math.floor((diff % 3600000) / 60000);
-    const segundos = Math.floor((diff % 60000) / 1000);
-
-    document.getElementById("dias").innerText = dias;
-    document.getElementById("horas").innerText = horas;
-    document.getElementById("minutos").innerText = minutos;
-    document.getElementById("segundos").innerText = segundos;
+  function toggleMusic() {
+    if(audio.paused) {
+      audio.play().catch(()=>{}); 
+      btn.innerHTML = '⏸️ PAUSAR MÚSICA';
+    } else {
+      audio.pause(); 
+      btn.innerHTML = '▶️ TOCA PARA ESCUCHAR';
+    }
   }
   
-  window.onload = () => {
-    actualizarContador();
-    setInterval(actualizarContador, 1000);
+  // CORAZONES CAYENDO
+  function crearCorazon() {
+    const corazon = document.createElement('div');
+    corazon.className = 'corazon';
+    corazon.innerHTML = '❤️';
+    corazon.style.left = Math.random() * 100 + 'vw';
+    corazon.style.animationDuration = (8 + Math.random() * 6) + 's';
+    document.body.appendChild(corazon);
+    setTimeout(() => corazon.remove(), 12000);
   }
+  setInterval(crearCorazon, 400);
 </script>
-
 </body>
 </html>
